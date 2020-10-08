@@ -303,13 +303,14 @@ RUN echo "## Internal Testing of image (not-activated)" \
 
 # ------------------------------------------------------------------------------
 # Copy this Dockerimage into image, so that it will be possible to recreate it later
-COPY Dockerfile /emsdk_portable/dockerfiles/trzeci/emscripten-upstream/
+COPY Dockerfile /emsdk_portable/dockerfiles/lollersk8r/emscripten-upstream/
 
-LABEL maintainer="kontakt@trzeci.eu" \
+LABEL maintainer="ryanpoppe42@gmail.com" \
       org.label-schema.name="emscripten" \
-      org.label-schema.description="Regular version of Emscripten compiler what should be suitable to compile majority of C++ projects for Emscripten, ASM.js and WebAssembly." \
-      org.label-schema.url="https://trzeci.eu" \
-      org.label-schema.vcs-url="https://github.com/trzecieu/emscripten-docker" \
-      org.label-schema.docker.dockerfile="/docker/trzeci/emscripten/Dockerfile"
+      org.label-schema.description="Extended version of Emscripten compiler what should be suitable to compile majority of C++ projects for Emscripten, ASM.js and WebAssembly." \
+      org.label-schema.url="https://ryanpoppe.com" \
+      org.label-schema.vcs-url="https://github.com/lollersk8r/emscripten-docker" \
+      org.label-schema.docker.dockerfile="/docker/lollersk8r/emscripten/Dockerfile"
 
 # ------------------------------------------------------------------------------
+# Forked from https://github.com/trzecieu/emscripten-docker

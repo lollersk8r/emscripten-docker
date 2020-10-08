@@ -5,8 +5,8 @@ services:
   - docker
 matrix:
   include:
-  - env: IMAGE=trzeci/emscripten
-  - env: IMAGE=trzeci/emscripten-slim
+  - env: IMAGE=lollersk8r/emscripten
+  - env: IMAGE=lollersk8r/emscripten-slim
 script:
   - printf '#include <iostream>\nint main() { std::cout << "HELLO FROM '$IMAGE'" << std::endl; return 0; }' > hello.cpp
   - docker run --rm -v $(pwd):/src $IMAGE emcc hello.cpp -o hello.js

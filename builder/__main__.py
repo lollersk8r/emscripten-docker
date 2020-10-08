@@ -22,7 +22,7 @@ EMSCRIPTEN_REPO = "https://github.com/emscripten-core/emscripten/"
 DOCKER_REGISTRY = "registry.hub.docker.com"
 
 # TODO: remove
-DOCKER_REPO = "trzeci/emscripten"
+DOCKER_REPO = "ryanpoppe/unlvwebfonts"
 
 QUEUE_FILE = "queue.txt"
 LOG_COMPILATION = "build.log"
@@ -157,7 +157,7 @@ class EMBuild:
 class EMVariant:
     def __init__(self, name, version):
         """
-        @param name: Either full name i.e. trzeci/emscripten or reduced name in case of official images
+        @param name: Either full name i.e. lollersk8r/emscripten or reduced name in case of official images
         @param version: version of Emscripten SDK
         """
         self.name = name
@@ -581,7 +581,7 @@ def main():
 
     parser_build = subparsers.add_parser("compile", help="Compile Docker images.")
     parser_build.set_defaults(function=compile)
-    parser_build.add_argument("sdks", type=str, nargs='*', help="List of images to compile, either just version (1.38.32) or explicit path: (trzeci/emscripten:1.38.31)")
+    parser_build.add_argument("sdks", type=str, nargs='*', help="List of images to compile, either just version (1.38.32) or explicit path: (lollersk8r/emscripten:1.38.31)")
     parser_build.add_argument("--branches", action="store_true", help="Update master and incoming images")
 
     parser_build.add_argument("--master", action="store_true", help="Update master images")     # FIXME: unsupported

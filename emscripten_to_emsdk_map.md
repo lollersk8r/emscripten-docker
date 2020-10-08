@@ -1,8 +1,8 @@
 The following table shows which version of juj/emsdk was used in order to compile  images:
-* **trzeci/emscripten**
-* **trzeci/emscripten-slim**
+* **lollersk8r/emscripten**
+* **lollersk8r/emscripten-slim**
 
-| trzeci/emscripten tag | emsdk changeset |
+| lollersk8r/emscripten tag | emsdk changeset |
 |---|---|
 |sdk-tag-1.38.8-64bit| [18b21ddad60df55d91b1a919d7fc04fa1cfd6148](https://github.com/juj/emsdk/tree/18b21ddad60df55d91b1a919d7fc04fa1cfd6148)|
 |sdk-tag-1.38.6-64bit| [e4f9d24b2a1d86bf7671c2fc55339d1f192350f4](https://github.com/juj/emsdk/tree/e4f9d24b2a1d86bf7671c2fc55339d1f192350f4)|

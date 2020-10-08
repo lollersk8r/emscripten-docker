@@ -1,10 +1,10 @@
 # Docker: emscripten
-Based on: **[trzeci/emscripten-slim](https://hub.docker.com/r/trzeci/emscripten-slim)**
+Based on: **[lollersk8r/emscripten-slim](https://hub.docker.com/r/lollersk8r/emscripten-slim)**
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/trzeci/emscripten.svg?style=flat-square)](https://store.docker.com/community/images/trzeci/emscripten/) [![Size](https://images.microbadger.com/badges/image/trzeci/emscripten.svg)](https://microbadger.com/images/trzeci/emscripten/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/lollersk8r/emscripten.svg?style=flat-square)](https://store.docker.com/community/images/lollersk8r/emscripten/) [![Size](https://images.microbadger.com/badges/image/lollersk8r/emscripten.svg)](https://microbadger.com/images/lollersk8r/emscripten/)
 
 A complete container that is required to compile C++ code with [Emscripten](http://emscripten.org). The goal was to provide a container that includes the most popular development packages and it's also easy to extend.
-Each tag was build from [Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten/Dockerfile)
+Each tag was build from [Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten/Dockerfile)
 
 ## Packages
 
@@ -29,9 +29,9 @@ Used templates:
 |`latest`| The default version (aka `latest`) points at [the latest tag release](https://github.com/emscripten-core/emscripten/releases) by Emscripten.|
 |`{VERSION}-upstream`| Then newest and greatest version of Emscripten, based on Clang10. |
 |`{VERSION}-fastcomp`| Legacy version of Emscripten that's based on modified Clang 6. Soon to be [deprecated](https://github.com/emscripten-core/emscripten/pull/11280). |
-|`{VERSION}-ubuntu`| Alias to version stored in [trzeci/emscripten-ubuntu](https://hub.docker.com/r/trzeci/emscripten-ubuntu)<br />Based on custom fastcomp build|
-|`{VERSION}-slim`| **LEGACY**: Alias to version stored in [trzeci/emscripten-slim](https://hub.docker.com/r/trzeci/emscripten-slim)<br />Based on custom fastcomp build that is extra size optimized|
-|`{VERSION}`| **LEGACY**: Based on [trzeci/emscripten-slim](https://hub.docker.com/r/trzeci/emscripten-slim) - custom fastcomp build|
+|`{VERSION}-ubuntu`| Alias to version stored in [lollersk8r/emscripten-ubuntu](https://hub.docker.com/r/lollersk8r/emscripten-ubuntu)<br />Based on custom fastcomp build|
+|`{VERSION}-slim`| **LEGACY**: Alias to version stored in [lollersk8r/emscripten-slim](https://hub.docker.com/r/lollersk8r/emscripten-slim)<br />Based on custom fastcomp build that is extra size optimized|
+|`{VERSION}`| **LEGACY**: Based on [lollersk8r/emscripten-slim](https://hub.docker.com/r/lollersk8r/emscripten-slim) - custom fastcomp build|
 |`sdk-tag-{VERSION}-64bit`| **LEGACY**: Tag release |
 |`sdk-{BRANCH}-64bit`| **LEGACY**: Branch release |
 
@@ -42,7 +42,7 @@ Every Emscripten command is available inside container. For the instance: `emcc`
 
 To compile a single file:
 ```bash
-docker run --rm -v `pwd`:`pwd` trzeci/emscripten emcc helloworld.cpp -o helloworld.js
+docker run --rm -v `pwd`:`pwd` lollersk8r/emscripten emcc helloworld.cpp -o helloworld.js
 ```
 
 More elaborated Hello World:
@@ -61,7 +61,7 @@ docker run \
   --rm \
   -v $(pwd):$(pwd) \
   -u $(id -u):$(id -g) \
-  trzeci/emscripten \
+  lollersk8r/emscripten \
   emcc helloworld.cpp -o helloworld.js
 
 # execute on host machine
@@ -76,17 +76,17 @@ Teardown of compilation command:
 |`--rm`|remove a container after execution (optimization)|
 |`-v $(pwd):$(pwd)`|Mounting current folder from the host system into mirrored path on the container<br>TIP: This helps to investigate possible problem as we preserve exactly the same paths like in host. In such case modern editors (like Sublime, Atom, VS Code) let us to CTRL+Click on a problematic file |
 |`-u $(id -u):$(id -g)`|(1.37.23+) Run a container as a non-root user with the same UID and GID as local user. Hence all files produced by this are accessible to non-root users|
-|`trzeci/emscripten`|Get the `latest` tag of this container|
+|`lollersk8r/emscripten`|Get the `latest` tag of this container|
 |`emcc helloworld.cpp -o helloworld.js`|Execute `emcc` command with following arguments inside container, effectively compile our source code|
 
 ## Extending this image
 If you would like to extend this image you have two choices:
 ### Extend with keeping base image
-An example how to derive from base image and keep linux base container you can find here : [trzeci/emscripten/Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten/Dockerfile).
+An example how to derive from base image and keep linux base container you can find here : [lollersk8r/emscripten/Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten/Dockerfile).
 
 All what you need is:
 ```Dockerfile
-FROM trzeci/emscripten:1.39.17-upstream
+FROM lollersk8r/emscripten:1.39.17-upstream
 # A good practice is to don't use `latest` - even if some effort is made to make sure that `latest` version is stable
 
 RUN ...
@@ -94,11 +94,11 @@ RUN ...
 This way you inherit all settings of environment that are coming with this image and entrypoiont.
 
 ### Extend with changing base image
-An example how to derive from base image and switch linux base container you can find here - [trzeci/emscripten-ubuntu/Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten-ubuntu/Dockerfile).
+An example how to derive from base image and switch linux base container you can find here - [lollersk8r/emscripten-ubuntu/Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten-ubuntu/Dockerfile).
 
 An example that uses Docker multi-stage build:
 ```dockerfile
-FROM trzeci/emscripten:1.39.17-upstream as emscripten_base
+FROM lollersk8r/emscripten:1.39.17-upstream as emscripten_base
 # Target base image
 FROM fedora
 # Copy pre-compiled content of Emscripten SDK to target iamge
@@ -148,12 +148,12 @@ Basically you can use whatever base system of choice and copy content of `/emsdk
 
 ## Build this image manually
 ### Using script
-0. Pull the latest https://github.com/trzecieu/emscripten-docker
-0. Use a helper command i.e `python -m builder compile 1.39.17` which will build all variants of SDK ([emscripten-slim](https://hub.docker.com/r/trzeci/emscripten-slim/), [emscripten](https://hub.docker.com/r/trzeci/emscripten/), [emscripten-ubuntu](https://hub.docker.com/r/trzeci/emscripten-ubuntu/)) and perform tests on those.
+0. Pull the latest https://github.com/lollersk8reu/emscripten-docker
+0. Use a helper command i.e `python -m builder compile 1.39.17` which will build all variants of SDK ([emscripten-slim](https://hub.docker.com/r/lollersk8r/emscripten-slim/), [emscripten](https://hub.docker.com/r/lollersk8r/emscripten/), [emscripten-ubuntu](https://hub.docker.com/r/lollersk8r/emscripten-ubuntu/)) and perform tests on those.
 
 ### Manual building
-0. Pull the latest https://github.com/trzecieu/emscripten-docker
-0. Navigate to wanted flavor to compile inside `./docker` path, let's say `./docker/trzeci/emscripten-upstream`.
+0. Pull the latest https://github.com/lollersk8reu/emscripten-docker
+0. Navigate to wanted flavor to compile inside `./docker` path, let's say `./docker/lollersk8r/emscripten-upstream`.
 0. Execute singe docker command and provide wanted version to compile as an argument:
 ```bash
 docker build -t my_little_emscripten_image --build-arg EMSCRIPTEN_VERSION=1.39.17 .
@@ -163,7 +163,7 @@ docker build -t my_little_emscripten_image --build-arg EMSCRIPTEN_VERSION=1.39.1
 As EMSDK and Emscripten and even this Docker Image are under an extensive development some scripts might change in meantime.
 
 ### Check used EMSDK version
-To be extra accurate, you can check which version of [EMSDK](https://github.com/juj/emsdk) was used in a particular image. For older images you can check [a file](https://github.com/trzecieu/emscripten-docker/blob/master/emscripten_to_emsdk_map.md) otherwise for images 1.38.9+ execute a command `docker run --rm -it trzeci/emscripten:sdk-tag-1.38.9-64bit bash -c "git -C /emsdk_portable rev-parse HEAD"`
+To be extra accurate, you can check which version of [EMSDK](https://github.com/juj/emsdk) was used in a particular image. For older images you can check [a file](https://github.com/lollersk8reu/emscripten-docker/blob/master/emscripten_to_emsdk_map.md) otherwise for images 1.38.9+ execute a command `docker run --rm -it lollersk8r/emscripten:sdk-tag-1.38.9-64bit bash -c "git -C /emsdk_portable rev-parse HEAD"`
 Found changeset should be used as `docker build` argument - `EMSDK_CHANGESET`
 
 ### Check used Dockerimage
@@ -171,7 +171,7 @@ Found changeset should be used as `docker build` argument - `EMSDK_CHANGESET`
 Dockerfiles are added to the image under `/emsdk_portable/dockerfiles` folder to get a copy of those please execute:
 ```bash
 # following command will tar dockerfiles form image and export files under host's filesystem in 'dockerfiles' folder.
-docker run --rm trzeci/emscripten-slim:sdk-tag-1.38.33-64bit  tar -c -C /emsdk_portable dockerfiles | tar xv
+docker run --rm lollersk8r/emscripten-slim:sdk-tag-1.38.33-64bit  tar -c -C /emsdk_portable dockerfiles | tar xv
 ```
 Then it's possible to have a full inspection to exact the same Docker file that were used for image building.
 
@@ -181,34 +181,34 @@ Then it's possible to have a full inspection to exact the same Docker file that 
 ```bash
 # example for 1.38.25
 tag=sdk-tag-1.38.25-64bit
-docker pull trzeci/emscripten:${tag} > /dev/null
-docker inspect  --format '{{ index .Config.Labels "org.label-schema.vcs-ref"}}' trzeci/emscripten:${tag}
+docker pull lollersk8r/emscripten:${tag} > /dev/null
+docker inspect  --format '{{ index .Config.Labels "org.label-schema.vcs-ref"}}' lollersk8r/emscripten:${tag}
 
 ```
 **B**: Use microbadger portal:
-* Navigate to https://microbadger.com/images/trzeci/emscripten/
+* Navigate to https://microbadger.com/images/lollersk8r/emscripten/
 * Select wanted version
 * Inspect `org.label-schema.vcs-ref` property that should hold changeset of `emscripten-docker` repository that was used during build process.
 
 ----
 
 ## Support
-* **GitHub / Issue tracker (for docker image)**: https://github.com/trzecieu/emscripten-docker
+* **GitHub / Issue tracker (for docker image)**: https://github.com/lollersk8reu/emscripten-docker
 * **GitHub / Issue tracker (for Emscripten)**: https://github.com/emscripten-core/emscripten
-* **Docker Hub: emscripten**: https://hub.docker.com/r/trzeci/emscripten/
-* **Docker Hub: emscripten-slim**: https://hub.docker.com/r/trzeci/emscripten-slim/
+* **Docker Hub: emscripten**: https://hub.docker.com/r/lollersk8r/emscripten/
+* **Docker Hub: emscripten-slim**: https://hub.docker.com/r/lollersk8r/emscripten-slim/
 
 ## History
 <sub>(Please note that following history refers only to the history of this Docker Image and how it was build / what includes. For release notes of emscripten, please follow https://emscripten.org)</sub>
 
 * **1.39.17**: It's over 1M pulls of this image! :tada: Thank you so much! Starting from this tag there is a couple of changes in the tag convention and compiled flavors.
-  * [#66](https://github.com/trzecieu/emscripten-docker/issues/66), [#68](https://github.com/trzecieu/emscripten-docker/issues/68) -  Make Emscripten Upstream the major flavor, so that `latest` tag will be always pointing to that flavour
-  * Images: [trzeci/emscripten/Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten/Dockerfile), [trzeci/emscripten-slim/Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten-slim/Dockerfile) are not loner compiled in favor of stable [trzeci/emscripten-fastcomp/Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten-fastcomp/Dockerfile) and [trzeci/emscripten-upstream/Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten-upstream/Dockerfile)
+  * [#66](https://github.com/lollersk8reu/emscripten-docker/issues/66), [#68](https://github.com/lollersk8reu/emscripten-docker/issues/68) -  Make Emscripten Upstream the major flavor, so that `latest` tag will be always pointing to that flavour
+  * Images: [lollersk8r/emscripten/Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten/Dockerfile), [lollersk8r/emscripten-slim/Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten-slim/Dockerfile) are not loner compiled in favor of stable [lollersk8r/emscripten-fastcomp/Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten-fastcomp/Dockerfile) and [lollersk8r/emscripten-upstream/Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten-upstream/Dockerfile)
 
-* **1.39.5**: [#67](https://github.com/trzecieu/emscripten-docker/issues/67) - Added precompiled LTO object
-* **1.38.34**: [#45](https://github.com/trzecieu/emscripten-docker/issues/45), [#46](https://github.com/trzecieu/emscripten-docker/issues/46) - (Cumulative change) Adopt image to new Emscripten SDK
+* **1.39.5**: [#67](https://github.com/lollersk8reu/emscripten-docker/issues/67) - Added precompiled LTO object
+* **1.38.34**: [#45](https://github.com/lollersk8reu/emscripten-docker/issues/45), [#46](https://github.com/lollersk8reu/emscripten-docker/issues/46) - (Cumulative change) Adopt image to new Emscripten SDK
   * Starting from 1.38.33 Emscripten has switched project build system to waterfall, which has introduced some complication to building the image. The main problem was that no longer was possible to compile Emscripten from sources, with making sure that we have exactly the same components like Emscripten was released. For the instance WebAssembly/binaryen repo wasn't tagged with Emscripten version anymore.
-[#44](https://github.com/trzecieu/emscripten-docker/issues/44) Significant refactoring of base image emscripten-slim. Please visit issue, to get extended context and motivation.
+[#44](https://github.com/lollersk8reu/emscripten-docker/issues/44) Significant refactoring of base image emscripten-slim. Please visit issue, to get extended context and motivation.
   * **Improvements**:
     * `/emsdk_portable` is fully moveable folder that can be used as a `COPY --from` source of multi stage build
     * `/emsdk_portable/dockerfiles` contains Dockerfile sources used to compile a particular image - so that it should be fairly easy to replicate and inspect content of images
@@ -225,8 +225,8 @@ docker inspect  --format '{{ index .Config.Labels "org.label-schema.vcs-ref"}}' 
       * Instead it creates symbolic links in fixed locations that match old structure
     * `nodejs` is no longer symlinked (`node` should be used instead)
 * **1.38.33**: Version ignored due problem with dependencies
-* **1.38.30**: [#40](https://github.com/trzecieu/emscripten-docker/issues/40) Fixed image compilation problem caused by JRE backport package
-* **1.38.22**: [#35](https://github.com/trzecieu/emscripten-docker/issues/35) upgrade to `cmake` 3.12.2
+* **1.38.30**: [#40](https://github.com/lollersk8reu/emscripten-docker/issues/40) Fixed image compilation problem caused by JRE backport package
+* **1.38.22**: [#35](https://github.com/lollersk8reu/emscripten-docker/issues/35) upgrade to `cmake` 3.12.2
 * **1.38.17**: Version ignored due problems with [Emscripten]
 * **1.38.9**: `/emsdk_portable` will be preserved as a git repos (with valid version of changeset)
 * **1.38.7**: Version removed due problems with [emsdk](https://github.com/juj/emsdk/pull/156)
@@ -236,13 +236,13 @@ docker inspect  --format '{{ index .Config.Labels "org.label-schema.vcs-ref"}}' 
 * **1.37.21**: image includes `ssh` and cache of libc libcxx is fixed.
 * **1.37.19**: image doesn't use entrypoint from the base image.
 * **1.37.18**: it contains `perl` and `git` package
-* **1.37.16**: images are compiled from singe [Dockerfile](https://github.com/trzecieu/emscripten-docker/blob/master/docker/trzeci/emscripten/Dockerfile).
+* **1.37.16**: images are compiled from singe [Dockerfile](https://github.com/lollersk8reu/emscripten-docker/blob/master/docker/lollersk8r/emscripten/Dockerfile).
 * **1.37.10**: images are bundled with `java`
 * **1.36.7**: images are bundled with `make` and `nodejs`
-* **1.36.7**: images are bundled with `cmake` 3.6.3, images are build from generated [Dockerfiles](https://github.com/trzecieu/emscripten-docker/tree/f738f061c8068ec24124c37286eafec01d54a6ef/configs)
+* **1.36.7**: images are bundled with `cmake` 3.6.3, images are build from generated [Dockerfiles](https://github.com/lollersk8reu/emscripten-docker/tree/f738f061c8068ec24124c37286eafec01d54a6ef/configs)
 * **1.35.0**: images base on Debian
 * **1.34.X**: images base on Ubuntu:15.10
 
 ## License
-[![MIT](https://img.shields.io/github/license/trzecieu/emscripten-docker.svg?style=flat-square)](https://github.com/trzecieu/emscripten-docker/blob/master/LICENSE)
+[![MIT](https://img.shields.io/github/license/lollersk8reu/emscripten-docker.svg?style=flat-square)](https://github.com/lollersk8reu/emscripten-docker/blob/master/LICENSE)
 

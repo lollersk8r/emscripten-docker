@@ -391,14 +391,14 @@ WORKDIR /src
 
 # ------------------------------------------------------------------------------
 # Copy this Dockerimage into image, so that it will be possible to recreate it later
-COPY Dockerfile /emsdk_portable/dockerfiles/trzeci/emscripten-slim/
+COPY Dockerfile /emsdk_portable/dockerfiles/lollersk8r/emscripten-slim/
 
-LABEL maintainer="kontakt@trzeci.eu" \
+LABEL maintainer="ryanpoppe42@gmail.com" \
       org.label-schema.name="emscripten-slim" \
       org.label-schema.description="This image includes EMSDK, Emscripten and WebAssembly compiler and tools that are very required to compile sources." \
-      org.label-schema.url="https://trzeci.eu" \
-      org.label-schema.vcs-url="https://github.com/trzecieu/emscripten-docker" \
-      org.label-schema.docker.dockerfile="/docker/trzeci/emscripten-slim/Dockerfile"
+      org.label-schema.url="https://ryanpoppe.com" \
+      org.label-schema.vcs-url="https://github.com/lollersk8r/emscripten-docker" \
+      org.label-schema.docker.dockerfile="/docker/lollersk8r/emscripten-slim/Dockerfile"
 
 # ------------------------- POST BUILD IN-PLACE TESTING ------------------------
 
@@ -450,3 +450,4 @@ RUN echo "## Internal Testing of image (no activation)" \
 &&  echo "## Done"
 
 # ------------------------------------------------------------------------------
+# Forked from https://github.com/trzecieu/emscripten-docker
