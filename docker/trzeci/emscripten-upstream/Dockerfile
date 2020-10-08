@@ -167,6 +167,15 @@ RUN echo "## Pre-populate cache" \
         libdlmalloc-debug \
         libpthread_stub \
         libsockets \
+        # Added gl,freetype,harfbuzz,sdl2,sdl2-image,sdl2-ttf,sdl2-net,zlib
+        gl \
+        freetype \
+        harfbuzz \
+        sdl2 \
+        sdl2-image \
+        sdl2-ttf \ 
+        sdl2-net \
+        zlib \
     \
     # some files were created, and we need to make sure that those can be accessed by non-root people
     &&  chmod -R 777 ${EM_DATA} \
